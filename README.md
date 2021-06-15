@@ -40,7 +40,7 @@ We welcome pull requests and feedback!
 | 16:45 | OptionExercises pt. 3  |
 | 18:00 | End |
 
-### Day 1
+### Day 3
 
 | Time | Topic/Exercise | 
 | :---: | :---: | 
