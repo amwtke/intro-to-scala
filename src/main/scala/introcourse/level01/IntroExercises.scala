@@ -17,16 +17,16 @@ object IntroExercises {
     * and can be inferred by the compiler.
     * scala> add(1, 2)
     * > 3
-    **/
-  def add(x: Int, y: Int): Int = ???
+    * */
+  def add(x: Int, y: Int): Int = x + y
 
 
   /**
     * Let's write the curried version of the `add` function defined previously
     * scala> addCurried(1)(2)
     * > 3
-    **/
-  def addCurried(x: Int)(y: Int): Int = ???
+    * */
+  def addCurried(x: Int)(y: Int): Int = x + y
 
 
   /**
@@ -34,10 +34,12 @@ object IntroExercises {
     * scala> add5(4)
     * > 9
     *
-    **/
+    * */
   def add5(x: Int): Int = {
-    val f: Int => Int = ???
-    ???
+    val f: Int => Int = (x: Int) => {
+      addCurried(x)(5)
+    }
+    f(x)
   }
 
   /**
@@ -46,12 +48,12 @@ object IntroExercises {
     * How many ways can you implement this function?
     * Note: Square brackets (Types at compile time), round brackets (Values at run time)
     */
-  def foo[A](a: A): A = ???
+  def foo[A](a: A): A = a
 
   /**
     * How about this one?
     */
-  def bar(a: Int): Int = ???
+  def bar(a: Int): Int = a
 
   /**
     * What does the return type of this function tell us about
