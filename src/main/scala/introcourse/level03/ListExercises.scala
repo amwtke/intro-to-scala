@@ -1,5 +1,7 @@
 package introcourse.level03
 
+import scala.::
+
 /**
   * These exercises will teach you how to work with the `List` data structure in Scala in a declarative manner.
   * At the end of these exercises, you should have a good intuition on when to use `map`, `filter` or `fold`.
@@ -294,14 +296,7 @@ object ListExercises {
     *
     * Don't use `.reverse` because that's cheating ;)
     */
-  @SuppressWarnings(Array("org.wartremover.warts.Var"))
-  def reverseList[A](xs: List[A]): List[A] = {
-    var result: List[A] = Nil
-    for (x <- xs) {
-      result = x :: result
-    }
-    result
-  }
+  def reverseList[A](xs: List[A]): List[A] = xs.foldLeft(List.empty[A])((acc, elem) => acc :+ elem)
 
   /**
     * Pack consecutive duplicates of list elements into sublists.
