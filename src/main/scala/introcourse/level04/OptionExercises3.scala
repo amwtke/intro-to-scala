@@ -38,6 +38,13 @@ object OptionExercises3 {
     * scala> findJobNameByHumanIdUsingFor(1)
     * > None
     */
-  def findJobNameByHumanIdUsingFor(humanId: HumanId): Option[String] =
-    findJobByHumanId(humanId).map(job => job.name)
+  //  def findJobNameByHumanIdUsingFor(humanId: HumanId): Option[String] =
+  //    findJobByHumanId(humanId).map(job => job.name)
+
+  def findJobNameByHumanIdUsingFor(humanId: HumanId): Option[String] = for {
+    human <- findHumanById(humanId)
+    jobId <- human.optJobId
+    job <- findJobById(jobId)
+    jobName = job.name
+  } yield jobName
 }
