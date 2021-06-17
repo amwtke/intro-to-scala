@@ -117,10 +117,12 @@ object OptionExercises2 {
     *
     * What's the type that you get after using `map`? What's different between that and the function's return type?
     */
-  def findJobIdByHumanId(humanId: HumanId): Option[JobId] = findHumanById(humanId) match {
-    case None => None
-    case Some(human) => human.optJobId
-  }
+  def findJobIdByHumanId(humanId: HumanId): Option[JobId] = findHumanById(humanId).flatMap(_.optJobId)
+
+  //    findHumanById(humanId) match {
+  //    case None => None
+  //    case Some(human) => human.optJobId
+  //  }
 
   /**
     * scala> findJobByHumanId(2)
@@ -144,9 +146,11 @@ object OptionExercises2 {
     *
     * Hint: Use `findJobByHumanId`
     */
-  def findJobNameByHumanId(humanId: HumanId): Option[String] = findJobIdByHumanId(humanId) match {
-    case None => None
-    case Some(jobId) => findJobById(jobId).map(_.name)
-  }
+  def findJobNameByHumanId(humanId: HumanId): Option[String] = humansDatabase.get(humanId).flatMap(_.optJobId).flatMap(jobId => jobsDatabase.get(jobId)).map(_.name)
+
+  //    findJobIdByHumanId(humanId) match {
+  //    case None => None
+  //    case Some(jobId) => findJobById(jobId).map(_.name)
+  //  }
 
 }
