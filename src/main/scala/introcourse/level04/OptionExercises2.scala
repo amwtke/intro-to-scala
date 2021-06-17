@@ -148,6 +148,8 @@ object OptionExercises2 {
     */
   def findJobNameByHumanId(humanId: HumanId): Option[String] = humansDatabase.get(humanId).flatMap(_.optJobId).flatMap(jobId => jobsDatabase.get(jobId)).map(_.name)
 
+  // ERROR===> humansDatabase.get(humanId).map(_.optJobId.get).map(jobId => jobsDatabase(jobId).name)
+
   //    findJobIdByHumanId(humanId) match {
   //    case None => None
   //    case Some(jobId) => findJobById(jobId).map(_.name)
