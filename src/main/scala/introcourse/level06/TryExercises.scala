@@ -74,7 +74,14 @@ object TryExercises {
     *
     * Hint: Use `parseIntSafe` and solve it without using pattern matching
     */
-
+  /**
+    * Failure的map实现：可见没有应用f函数，而是直接返回了这个Failure对象。
+    * override def map[U](f: T => U): Try[U] = this.asInstanceOf[Try[U]]
+    *
+    * List的flatMap实现
+    * final override def flatMap[B](f: A => IterableOnce[B]): List[B] = {
+    * 相当于把每个list中的元素，通过f变成一个List[B]（两重list），然后把这个list 拍平返回成一个List[B]
+    */
   def increment(str: String): Try[Int] = {
     parseIntSafe(str).map(x => x + 1)
   }
@@ -158,6 +165,6 @@ object TryExercises {
     */
   def fileToEmployees(filename: String): List[Either[TryError, Employee]] = {
     val lines: List[String] = io.Source.fromFile(filename).getLines().toList
-    lines.map(x=>mkEmployee(x))
+    lines.map(x => mkEmployee(x))
   }
 }
