@@ -143,6 +143,30 @@ object LogParser {
   def getErrorsOverSeverity(logs: List[LogMessage], minimumSeverity: Int): List[LogMessage] = logs.collect({
     case KnownLog(logLevel: Error, time, msg) if logLevel.severity > minimumSeverity => KnownLog(logLevel, time, msg)
   })
+  // ===================server other  用@  也可以用Error(serverity)
+//
+//  def getErrorsOverSeverQity(logs: List[LogMessage], minimumSeverity: Int): List[LogMessage] = logs.filter {
+//    case KnownLog(Error(severity), _, _) if severity > minimumSeverity => true
+//    case _ => false
+//  }
+//
+//  def getErrorsOverSeverity(logs: List[LogMessage], minimumSeverity: Int): List[LogMessage] =
+//    logs.collect{
+//      case x @ KnownLog(Error(severity), timestamp, message) if severity > minimumSeverity => x
+//    }
+//
+//  def getErrorsOverSeverity(logs: List[LogMessage], minimumSeverity: Int): List[LogMessage] = logs match {
+//    case Nil => Nil
+//    case value =>
+//      value.collect {
+//        case log @ KnownLog(Error(severity), _, _) if severity > minimumSeverity => log
+//      }
+//  }
+//  def getErrorsOverSeverity(logs: List[LogMessage], minimumSeverity: Int): List[LogMessage] =
+//    logs.collect {
+//      case kl@(KnownLog(Error(severity), _, _)) if (severity > minimumSeverity) => kl
+//    }
+
 
   /**
     * Write a function to convert a `LogMessage` to a readable `String`.
